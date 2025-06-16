@@ -1,5 +1,6 @@
 import React from 'react'
 import './Gallery.css'
+import GalleryItem from '../../GalleryItem/GalleryItem';
 
 const pins = [
   { id: 1, media: '/pins/pin1.jpeg', height: 1000, width: 1260 },
@@ -31,7 +32,11 @@ const pins = [
 
 const Gallery = () => {
   return (
-    <div>Gallery</div>
+    <div className='gallery'>
+      {pins.map((pin)=>(
+        <GalleryItem key={pin.id} item={pin} />
+      ))}
+    </div>
   )
 }
 
