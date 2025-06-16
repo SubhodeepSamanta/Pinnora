@@ -1,0 +1,32 @@
+.TopBar{
+    margin: 16px 0 24px 0;
+    display: flex;
+}
+
+.search{
+    flex: 1;
+    padding: 12px;
+    background-color: #f1f1f1;
+    border-radius: 12px;
+    display: flex;
+}
+
+.search img{
+    padding: 0 8px;
+}
+
+.search input{
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 1.4rem;
+    margin-left: 16px;
+}
+
+.search:hover{
+    background-color: #e1e1e1;
+}
+.search:focus-within{
+    background-color: #e1e1e1;
+}
