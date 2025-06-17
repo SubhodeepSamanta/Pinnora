@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import './UserButton.css'
 import { Img } from '../ImageKit/Image';
 import { Link } from 'react-router';
+import './UserButton.css'
 
 const UserButton = () => {
     
