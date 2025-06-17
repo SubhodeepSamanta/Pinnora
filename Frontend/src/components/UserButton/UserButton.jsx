@@ -12,7 +12,7 @@ const UserButton = () => {
         {login?(
             <>
             <Img src="/general/noAvatar.png" alt="avatar" className='avatar'/>
-            <Img onClick={()=>setOption(o=>!o)} src="/general/arrow.svg" alt="" className='arrow'/>
+            <Img  onClick={()=>setOption(o=>!o)} src="/general/arrow.svg" alt="" className='arrow'/>
             {option && <div className="options">
                 <div className='option'>Profile</div>
                 <div className='option'>Setting</div>

@@ -1,11 +1,11 @@
 import React from 'react'
-import './TopBar.css'
+import './NavBar.css'
 import UserButton from '../UserButton/UserButton'
 import { Img } from '../ImageKit/Image'
 
-const TopBar = () => {
+const NavBar = () => {
   return (
-    <div className='TopBar'>
+    <div className='NavBar'>
       <div className="search">
         <Img src="/general/search.svg" alt="" className="img" height="36px" width="36px" />
         <input type="text" placeholder='Search'/>
@@ -15,4 +15,4 @@ const TopBar = () => {
   )
 }
 
-export default TopBar
+export default NavBar

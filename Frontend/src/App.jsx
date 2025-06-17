@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import LeftBar from "./components/leftBar/leftBar";
-import TopBar from "./components/topBar/topBar";
+import LeftBar from "./components/LeftBar/LeftBar";
+import NavBar from "./components/NavBar/NavBar";
 import Gallery from "./components/Gallery/Gallery";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="app">
       <LeftBar />
       <div className="content">
-        <TopBar />
+        <NavBar />
         <Gallery />
       </div>
     </div>
