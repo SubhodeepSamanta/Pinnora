@@ -1,6 +1,6 @@
 import React from 'react'
 import './Gallery.css'
-import GalleryItem from '../../GalleryItem/GalleryItem';
+import GalleryItem from '../GalleryItem/GalleryItem';
 
 const pins = [
   { id: 1, media: '/pins/pin1.jpeg', height: 1000, width: 1260 },

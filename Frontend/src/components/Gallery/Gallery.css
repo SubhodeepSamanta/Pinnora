@@ -33,5 +33,6 @@
 @media (max-width: 475px){
     .gallery{
     grid-template-columns: repeat(1,1fr);
+    margin-right: 16px;
     }
 }

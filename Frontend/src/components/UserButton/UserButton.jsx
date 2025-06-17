@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './UserButton.css'
+import { Img } from '../ImageKit/Image';
+import { Link } from 'react-router';
 
 const UserButton = () => {
     
@@ -9,8 +11,8 @@ const UserButton = () => {
     <div className='UserButton'>
         {login?(
             <>
-            <img src="/general/noAvatar.png" alt="avatar" className='avatar'/>
-            <img onClick={()=>setOption(o=>!o)} src="/general/arrow.svg" alt="" className='arrow'/>
+            <Img src="/general/noAvatar.png" alt="avatar" className='avatar'/>
+            <Img onClick={()=>setOption(o=>!o)} src="/general/arrow.svg" alt="" className='arrow'/>
             {option && <div className="options">
                 <div className='option'>Profile</div>
                 <div className='option'>Setting</div>
@@ -20,7 +22,7 @@ const UserButton = () => {
             </>
         ):(
             <>
-            <a href="/" className='login'> Login / Register </a>
+            <Link to="/" className='login'> Login / Register </Link>
             </>
         )}
     </div>

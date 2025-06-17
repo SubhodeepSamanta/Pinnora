@@ -1,12 +1,16 @@
 .galleryItem{
     display: flex;
     position: relative;
+    border: none;
+    border-radius: 17px;
 }
 
-.galleryItem img{
+.galleryItem .img{
     width: 100%;
     border-radius: 16px;
+    height: auto;
     object-fit: cover;
+    object-position: center;
 }
 
 .overlay{
@@ -49,7 +53,7 @@
     transition: all 0.2s ease;
 }
 
-.overlayIcons img{
+.overlayIcons .img{
     height: 32px;
     width: 32px;
     margin-right: 8px;
