@@ -14,9 +14,9 @@ const UserButton = () => {
             <Img src="/general/noAvatar.png" alt="avatar" className='avatar'/>
             <Img  onClick={()=>setOption(o=>!o)} src="/general/arrow.svg" alt="" className='arrow'/>
             {option && <div className="options">
-                <div className='option'>Profile</div>
-                <div className='option'>Setting</div>
-                <div className='option'>Logout</div>
+                <Link to='/subhodeep'><div className='option'>Profile</div></Link>
+                <Link to='/auth'><div className='option'>Setting</div></Link>
+                <Link to='/auth'><div className='option'>Logout</div></Link>
             </div>
             }
             </>

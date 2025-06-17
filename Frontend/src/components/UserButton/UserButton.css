@@ -44,6 +44,11 @@
     border-radius: 8px;
 }
 
+.UserButton a{
+    color: black;
+    text-decoration: none;
+}
+
 .option{
     padding: 8px 26px;
     border-radius: 8px;
@@ -53,6 +58,7 @@
 .option:hover{
     background-color: #e9e9e9;
 }
+
 
 @media (max-width: 475px) {
     .UserButton{
