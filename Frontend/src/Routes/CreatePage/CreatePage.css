@@ -25,6 +25,7 @@
     border: none;
     border-radius: 36px;
     color: white;
+    cursor: pointer;
 }
 
 .create-bottom{

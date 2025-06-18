@@ -1,0 +1,110 @@
+.authpage{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.authpage form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.loginpage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    padding: 24px 32px;
+    border-radius: 32px;
+}
+
+.loginpage h1{
+    font-size: 1.5rem;
+    margin: 12px 8px;
+}
+
+.login-input{
+    margin: 8px 0;
+}
+
+.login-input label{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    gap: 5px;
+    color: #b2b2b2;
+}
+
+.login-input label input{
+    font-size: 1rem;
+    border: 1px solid #b2b2b2;
+    outline: none;
+    border-radius: 16px;
+    padding: 12px 14px;
+}
+
+
+.auth-button{
+    background-color: #e50829;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 16px 0 16px 0;
+    padding: 12px 0;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.form-switch{
+    font-size: 0.9rem;
+    color: #8a8a8a;
+    cursor: pointer;
+}
+
+.form-switch b{
+    color: #8b8b8b;
+}
+
+
+.loginpage h1{
+    font-size: 1.5rem;
+    margin: 12px 8px;
+}
+
+.register-input{
+    margin: 8px 0;
+}
+
+.register-input label{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    gap: 5px;
+    color: #b2b2b2;
+}
+
+.register-input label input{
+    font-size: 1rem;
+    border: 1px solid #b2b2b2;
+    outline: none;
+    border-radius: 16px;
+    padding: 12px 14px;
+}
+
+.form-switch{
+    font-size: 0.9rem;
+    color: #8a8a8a;
+    cursor: pointer;
+}
+
+.form-switch b{
+    color: #8b8b8b;
+}
