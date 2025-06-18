@@ -108,3 +108,12 @@
 .form-switch b{
     color: #8b8b8b;
 }
+
+.form-switch:hover b{
+    text-decoration: underline;
+}
+
+.error{
+    color: #e50829;
+    margin-bottom: 8px;
+}

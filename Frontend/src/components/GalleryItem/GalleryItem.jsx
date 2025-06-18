@@ -14,7 +14,7 @@ const GalleryItem = ({item}) => {
       alt="image"
       className="img"
     />
-      <Link to={`/pins/${item.id}`}>
+      <Link to={`/pins/${item._id}`}>
         <div className="overlay">
             <button className='save'>Save</button>
             <div className="overlayIcons">

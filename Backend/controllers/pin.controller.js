@@ -1,5 +1,7 @@
+import Pin from "../models/pin.model.js"
 
 
-export const test= (req,res)=>{
-    res.json({"message":"response from pin"});
+export const getPins= async (req,res)=>{
+    const pins= await Pin.find();
+    res.status(200).send(pins);
 }

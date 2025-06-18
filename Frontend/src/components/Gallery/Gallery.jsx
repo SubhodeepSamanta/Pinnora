@@ -1,6 +1,8 @@
 import React from 'react'
 import './Gallery.css'
 import GalleryItem from '../GalleryItem/GalleryItem';
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query';
 
 const pins = [
   { id: 1, media: '/pins/pin1.jpeg', height: 1000, width: 1260 },
@@ -30,11 +32,20 @@ const pins = [
   { id: 25, media: '/pins/pin25.jpeg', height: 1920, width: 1080 },
 ];
 
+const fetchPins= async()=>{
+  const pins= await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/pins`);
+  return pins.data;
+}
+
 const Gallery = () => {
+  const { isPending, error, data } = useQuery({ queryKey: ['pin'], queryFn: fetchPins });
+  if(error) return 'An error has occured: '+error.message;
+  if(isPending) return 'Loading...';
+
   return (
     <div className='gallery'>
-      {pins.map((pin)=>(
-        <GalleryItem key={pin.id} item={pin} />
+      {data.map((pin)=>(
+        <GalleryItem key={pin._id} item={pin} />
       ))}
     </div>
   )

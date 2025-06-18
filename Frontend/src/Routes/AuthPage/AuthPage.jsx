@@ -5,6 +5,7 @@ import './AuthPage.css'
 
 const AuthPage = () => {
   const [isRegister,setIsRegister]= useState(false);
+  const [error,setError]= useState(false);
   return (
     <div className="authpage">
       <div className="loginpage">
@@ -42,6 +43,7 @@ const AuthPage = () => {
             </label>
           </div>
           <button className="auth-button">Register</button>
+          {error && <span className="error"> error message </span>}
           <span className="form-switch" onClick={()=>setIsRegister(i=>!i)} >Don&apos;t have an account? <b>Login</b></span>
         </form>)
         :
@@ -60,10 +62,11 @@ const AuthPage = () => {
                 name="password"
                 id="password"
                 placeholder="Password"
-              />
+                />
             </label>
           </div>
           <button className="auth-button">Login</button>
+          {error && <span className="error"> error message </span>}
           <span onClick={()=>setIsRegister(i=>!i)} className="form-switch" >Don&apos;t have an account? <b>Register</b></span>
         </form>)
 }
