@@ -5,6 +5,12 @@
     gap: 16px;
 }
 
+.scroll{
+    text-align: center;
+    margin: 16px;
+    color: #b2b2b2;
+}
+
 @media (max-width: 1729px){
     .gallery{
     grid-template-columns: repeat(6,1fr);
