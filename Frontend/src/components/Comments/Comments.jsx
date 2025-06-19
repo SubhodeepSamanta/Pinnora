@@ -1,94 +1,32 @@
 import React, { useState } from 'react'
 import './Comments.css'
-import EmojiPicker from 'emoji-picker-react';
-import { Img } from '../ImageKit/Image';
+import { useQuery } from '@tanstack/react-query';
+import apiRequest from '../../utils/apiRequest';
+import Comment from './Comment';
+import CommentForm from './CommentForm';
 
-const Comments = () => {
-    const [showEmojiPicker,setShowEmojiPicker]=useState(false);
+const Comments = ({id}) => {
+
+    const {isPending,error,data}= useQuery({
+        queryKey:['comments',id],
+        queryFn: async () =>{ 
+          const response= await apiRequest.get(`/comments/${id}`);
+          return response.data;
+        }
+      })
+      if(isPending) return "Loading...";
+      if(error) return "An error has occured: "+error.message;
+      if(!data) return "No comments"
+      
   return (
     <div className='comments'>
-        <span className='total-comments'>5 Comments</span>
+        <span className='total-comments'>{data.length===0 ? "No Comments" : data.length===1? '1 Comment': `${data.length} Comments`}</span>
         <div className="comments-list">
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
-            <div className="comment">
-                <Img src='./general/noAvatar.png'/>
-                <div className="comment-info">
-                    <span className='commentAuthor'>Subhodeep</span>
-                    <p className='comment-text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos voluptate quod nisi eaque</p>
-                    <span className='comment-time'>1h</span>
-                </div>
-            </div>
+            {data.map((comment)=>(
+            <Comment key={comment._id} comment={comment} />
+            ))}
         </div>
-        <div className="comments-form">
-            <input type="text" placeholder='Add a comment' className='input-comment'/>
-            <span className='emoji' onClick={()=>setShowEmojiPicker(s=>!s)}>😊</span>
-            {showEmojiPicker && <div className="emoji-picker">
-                <EmojiPicker />
-            </div>}
-        </div>
+        <CommentForm/>
     </div>
   )
 }

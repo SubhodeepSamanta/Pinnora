@@ -12,6 +12,10 @@
     gap: 8px;
 }
 
+.interactions img{
+    cursor: pointer;
+}
+
 .interactions span{
     font-size: 14px;
     margin-right: 12px;
@@ -45,6 +49,8 @@
 }
 
 .author a span{
-    font-size: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-left: 5px;
     color: black;
 }

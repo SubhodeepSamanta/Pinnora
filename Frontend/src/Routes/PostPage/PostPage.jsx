@@ -19,7 +19,7 @@ const PostPage = () => {
   if(isPending) return "Loading...";
   if(error) return "An error has occured: "+error.message;
   if(!data) return "Something went wrong"
-  console.log(data);
+  
   return (
     <div className='postpage'>
       <Link to='/' className='back-arrow'>
@@ -31,7 +31,7 @@ const PostPage = () => {
         </div>
         <div className="post-info">
           <PostInteractions username={data.user.username} img={data.user.img} displayName={data.user.displayName}/>
-          <Comments/>
+          <Comments id={data._id}/>
         </div>
       </div>
     </div>
