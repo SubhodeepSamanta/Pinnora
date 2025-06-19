@@ -40,6 +40,11 @@
     cursor: pointer;
 }
 
+.profileInfo img{
+    border: none;
+    border-radius: 50%;
+}
+
 .profile-icons button:last-of-type{
     background-color: #e50829;
     color: white;

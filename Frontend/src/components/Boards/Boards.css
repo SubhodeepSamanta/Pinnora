@@ -23,13 +23,27 @@
 }
 
 .collection-info p{
+    color: black;
     font-weight: 700;
     margin-bottom: 5px;
 }
 
 .collection-info span{
+    display: flex;
+    align-items: center;
     color: #a9a9a9;
 }
+
+.collection-info span span{
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.collections a{
+    text-decoration: none;
+}
+
+
 
 
 
