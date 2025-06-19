@@ -1,4 +1,5 @@
 import Pin from "../models/pin.model.js"
+import User from "../models/user.model.js";
 
 
 export const getPins= async (req,res)=>{
@@ -13,4 +14,10 @@ export const getPins= async (req,res)=>{
     }:{}).limit(LIMIT).skip(LIMIT*pageNumber);
     const hasNextPage= pins.length===LIMIT;
     res.status(200).send({pins, nextCursor: hasNextPage ? pageNumber+1 : null});
+}
+
+export const getPin= async(req,res)=>{
+    const {id}=req.params;
+    const pin= await Pin.findById(id).populate("user", "username img displayName");
+    res.status(200).send(pin);
 }

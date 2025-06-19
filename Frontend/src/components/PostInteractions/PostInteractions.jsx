@@ -3,7 +3,7 @@ import './PostInteractions.css'
 import { Img } from '../ImageKit/Image'
 import {Link} from 'react-router'
 
-const PostInteractions = () => {
+const PostInteractions = ({username,img,displayName}) => {
   return (
     <>
     <div className='postInteractions'>
@@ -20,9 +20,9 @@ const PostInteractions = () => {
         </div>
     </div>
         <div className="author">
-            <Link to='/subhodeep'>
-                <Img src='/general/noAvatar.png' width='28'/>
-                <span>Subhodeep Samanta</span>
+            <Link to={`/${username}`}>
+                <Img src={img || '/general/noAvatar.png'} width='28'/>
+                <span>{displayName}</span>
             </Link>
         </div>
         </>

@@ -39,6 +39,11 @@
     margin-left: 20px;
 }
 
+.author a img{
+    border:none;
+    border-radius: 50%;
+}
+
 .author a span{
     font-size: 12px;
     color: black;
