@@ -6,6 +6,7 @@ import Gallery from '../../components/Gallery/Gallery'
 import { useQuery } from '@tanstack/react-query'
 import apiRequest from '../../utils/apiRequest.js'
 import Boards from '../../components/Boards/Boards.jsx'
+import FollowButton from './FollowButton.jsx'
 
 const ProfilePage = () => {
   const [active,setActive]= useState('create');
@@ -27,11 +28,11 @@ const ProfilePage = () => {
       <Img src={data.img || '/general/noAvatar.png'} width='100' height='100'/>
       <h2 className='profile-author'>{data.displayName}</h2>
       <div className='profile-username'>{data.username}</div>
-      <div>2 followers <span className='profile-dot'>&#x2022;</span> 4 following</div>
+      <div>{data.followerCount} followers <span className='profile-dot'>&#x2022;</span> {data.followingCount} following</div>
       <div className="profile-icons">
         <Link to='/'><Img className='profile-share' src='/general/share.svg' width='24' /></Link>
         <button>Message</button>
-        <button>Follow</button>
+        <FollowButton username={data.username} isFollowing={data.isFollowing} />
         <Link to='/'><Img src='/general/more.svg' width='24'/></Link>
       </div>
       <div className="profile-show">
