@@ -5,6 +5,7 @@ import commentRouter from './routes/comment.route.js';
 import boardRouter from './routes/board.route.js';
 import connectDB from './utils/connectDB.js';
 import  cors from 'cors'
+import cookieParser from 'cookie-parser';
 
 const app= express();
 const PORT=process.env.PORT;
@@ -13,6 +14,7 @@ app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true
 }));
+app.use(cookieParser());
 
 app.use('/users', userRouter );
 app.use('/pins', pinRouter );

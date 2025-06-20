@@ -3,16 +3,18 @@ import { Img } from '../ImageKit/Image';
 import { Link, useNavigate } from 'react-router';
 import './UserButton.css'
 import apiRequest from '../../utils/apiRequest';
+import useAuthStore from '../../utils/authStore';
 
 const UserButton = () => {
     
-    const login=true;
     const [option,setOption]= useState(false);
     const navigate= useNavigate();
+    const {currentUser, removeCurrentUser}= useAuthStore();
 
     const handleLogout= async(req,res)=>{
         try{
             await apiRequest.post('/users/auth/logout',{});
+            removeCurrentUser();
             navigate('/auth');
         }catch(err){
             console.error(err.response.data);
@@ -21,12 +23,12 @@ const UserButton = () => {
 
   return (
     <div className='UserButton'>
-        {login?(
+        {currentUser?(
             <>
-            <Img src="/general/noAvatar.png" alt="avatar" className='avatar'/>
+            <Img src={currentUser.img || "/general/noAvatar.png"} alt="avatar" className='avatar'/>
             <Img  onClick={()=>setOption(o=>!o)} src="/general/arrow.svg" alt="" className='arrow'/>
             {option && <div className="options">
-                <Link to='/subhodeep'><div className='option'>Profile</div></Link>
+                <Link to={currentUser.username}><div className='option'>Profile</div></Link>
                 <Link to='/auth'><div className='option'>Setting</div></Link>
                 <div onClick={handleLogout}><div className='option'>Logout</div></div>
             </div>
@@ -34,7 +36,7 @@ const UserButton = () => {
             </>
         ):(
             <>
-            <Link to="/" className='login'> Login / Register </Link>
+            <Link to="/auth" className='login'> Login / Register </Link>
             </>
         )}
     </div>
