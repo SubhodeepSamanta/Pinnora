@@ -1,12 +1,24 @@
 import React, { useState } from 'react'
 import { Img } from '../ImageKit/Image';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import './UserButton.css'
+import apiRequest from '../../utils/apiRequest';
 
 const UserButton = () => {
     
     const login=true;
     const [option,setOption]= useState(false);
+    const navigate= useNavigate();
+
+    const handleLogout= async(req,res)=>{
+        try{
+            await apiRequest.post('/users/auth/logout',{});
+            navigate('/auth');
+        }catch(err){
+            console.error(err.response.data);
+        }
+    }
+
   return (
     <div className='UserButton'>
         {login?(
@@ -16,7 +28,7 @@ const UserButton = () => {
             {option && <div className="options">
                 <Link to='/subhodeep'><div className='option'>Profile</div></Link>
                 <Link to='/auth'><div className='option'>Setting</div></Link>
-                <Link to='/auth'><div className='option'>Logout</div></Link>
+                <div onClick={handleLogout}><div className='option'>Logout</div></div>
             </div>
             }
             </>
