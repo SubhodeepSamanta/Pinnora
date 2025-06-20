@@ -1,6 +1,9 @@
 .createpage{
     display: flex;
     flex-direction: column;
+}
+
+.no-edit{
     align-items: center;
 }
 
@@ -32,7 +35,6 @@
     display: flex;
     width: 50%;
     justify-content: center;
-    align-items: center;
     gap: 46px;
 }
 
@@ -101,6 +103,33 @@
     resize: unset;
     font-size: 0.9rem;
 }
+
+.previewImg{
+    margin-top: 36px;
+    max-width: 375px;
+    position: relative;
+    cursor: pointer;
+}
+
+.previewImg img{
+    width: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 32px;
+}
+
+.previewImg .edit-icon{
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
 
 .createFormItem small{
     margin-top: 8px;
