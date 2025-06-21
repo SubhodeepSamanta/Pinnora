@@ -175,3 +175,66 @@
     border: 1px solid #b2b2b2;
     border-radius: 8px;
 }
+
+.canvas-options{
+    display: flex;
+    flex-direction: column;
+    margin: 32px 0 0 24px;
+    gap: 16px;
+    font-size: 0.9rem;
+}
+
+.canvas-option{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.orientation-options{
+    display: flex;
+    max-width: max-content;
+    background-color: #e9e9e9;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    gap: 5px;
+}
+
+.orientation-option{
+    padding: 6px 15px;
+    border: none;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.orientation-option:hover{
+    background-color: #b2b2b2;
+}
+
+
+.size-options{
+    display: flex;
+    max-width: max-content;
+    background-color: #e9e9e9;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 8px;
+    gap: 5px;
+}
+
+.size{
+    padding: 5px 8px;
+    border: none;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.size:hover{
+    background-color: #b2b2b2;
+}
+
+.size.selected, .orientation-option.selected{
+    background-color: white;
+}

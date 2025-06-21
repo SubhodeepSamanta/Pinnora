@@ -9,8 +9,15 @@ const useEditorStore = create((set) => ({
     top: 48,
     left: 0
   },
+  canvasOptions:{
+    height:0,
+    orientation: "",
+    size: "",
+    backgroundColor: "#008080"
+  },
   setSelectedLayer: (layer) => set(() => ({ selectedLayer: layer })),
   setTextOptions: (text)=> set(()=> ({textOptions: text})),
+  setCanvasOptions: (canvas)=> set(()=> ({canvasOptions: canvas})),
   addText: ()=> set(()=>({
     textOptions:{
     text: "Add text",
