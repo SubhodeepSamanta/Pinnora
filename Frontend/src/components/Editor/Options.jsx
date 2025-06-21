@@ -85,7 +85,7 @@ const Options = () => {
   const handleSize= (newSize)=>{
     setCanvasOptions({...canvasOptions, size: newSize});
   }
-
+  console.log(canvasOptions);
   return (
     <div className="options-layer">
       {selectedLayer === "text" ? (
