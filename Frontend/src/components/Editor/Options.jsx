@@ -68,7 +68,7 @@ const landscapeSizes = [
   },
 ];
 
-const Options = () => {
+const Options = ({previewImg}) => {
   const {
     selectedLayer,
     textOptions,
@@ -78,14 +78,42 @@ const Options = () => {
   } = useEditorStore();
   const [colorPickerOpen, setColorPickerOpen] = useState();
 
-  const handleOrientation= (newOrientation)=>{
-    setCanvasOptions({...canvasOptions, orientation: newOrientation});
+  const originalOrientation= previewImg.width < previewImg.height ? "portrait" : "landscape";
+
+  const handleOrientation= (orientation)=>{
+    let newHeight;
+    if(originalOrientation===orientation){
+        newHeight = (375 * previewImg.height) / previewImg.width;
+    }else{
+        newHeight = (375 * previewImg.width) / previewImg.height;
+    }
+    setCanvasOptions({
+        ...canvasOptions,
+        orientation,
+        size:"original",
+        height: newHeight
+    })
   }
-  
-  const handleSize= (newSize)=>{
-    setCanvasOptions({...canvasOptions, size: newSize});
+
+
+  const handleSize= (size)=>{
+    let newHeight;
+    if(size==='original'){
+        if(originalOrientation===canvasOptions.orientation){
+            newHeight = (375 * previewImg.height) / previewImg.width;
+        }else{
+            newHeight = (375 * previewImg.width) / previewImg.height;
+        }
+    }else{
+        newHeight = (375 * size.height) / size.width;
+    }
+    setCanvasOptions({
+        ...canvasOptions,
+        size: size==="original"?"original":size.name,
+        height:newHeight
+    })
   }
-  console.log(canvasOptions);
+
   return (
     <div className="options-layer">
       {selectedLayer === "text" ? (
@@ -153,14 +181,14 @@ const Options = () => {
                 {
                   <>
                     <div onClick={()=>handleSize("original")}
-                      className={`size ${
+                      className={`size ${originalOrientation!=='landscape' ? "hidden" : ""} ${
                         canvasOptions.size === "original" ? "selected" : ""
                       }`}
                     >
                       Original
                     </div>
                     {landscapeSizes.map((size) => (
-                      <div  onClick={()=>handleSize(size.name)} className={`size ${canvasOptions.size===size.name ? "selected" : ""}`} key={size.name}>
+                      <div  onClick={()=>handleSize(size)} className={`size ${canvasOptions.size===size.name ? "selected" : ""}`} key={size.name}>
                         {size.name}
                       </div>
                     ))}
@@ -171,14 +199,14 @@ const Options = () => {
               <div className="size-options">
                 <>
                   <div onClick={()=>handleSize("original")}
-                    className={`size ${
+                    className={`size ${originalOrientation!=='portrait' ? "hidden" : ""} ${
                       canvasOptions.size === "original" ? "selected" : ""
                     }`}
                   >
                     Original
                   </div>
                   {portraitSizes.map((size) => (
-                    <div  onClick={()=>handleSize(size.name)} className={`size ${canvasOptions.size===size.name ? "selected" : ""}`} key={size.name}>
+                    <div  onClick={()=>handleSize(size)} className={`size ${canvasOptions.size===size.name ? "selected" : ""}`} key={size.name}>
                       {size.name}
                     </div>
                   ))}

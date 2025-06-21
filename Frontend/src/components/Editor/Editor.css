@@ -72,6 +72,7 @@
 
 .workspace .canvas{
     width: 375px;
+    max-height: 750px;
     border: none;
     border-radius: 32px;
     background-color: #b2b2b2;
@@ -198,6 +199,10 @@
     border-radius: 5px;
     padding: 5px 8px;
     gap: 5px;
+}
+
+.hidden{
+    display: none;
 }
 
 .orientation-option{

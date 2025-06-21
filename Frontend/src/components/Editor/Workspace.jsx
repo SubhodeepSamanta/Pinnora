@@ -11,6 +11,7 @@ const Workspace = ({previewImg}) => {
   useEffect(()=>{
     if(canvasOptions.height===0){
       const newHeight= (375 * previewImg.height) / previewImg.width;
+      console.log(`workspace: ${newHeight}`)
       setCanvasOptions({
         ...canvasOptions,
         height: newHeight,
@@ -21,7 +22,7 @@ const Workspace = ({previewImg}) => {
 
   return (
     <div className='workspace'>
-      <div className="canvas">
+      <div className="canvas" style={{height: canvasOptions.height, backgroundColor: canvasOptions.backgroundColor}}>
         <img src={previewImg.url} />
         {
           textOptions.text ? 

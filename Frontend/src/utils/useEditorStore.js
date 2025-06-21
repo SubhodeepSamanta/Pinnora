@@ -12,7 +12,7 @@ const useEditorStore = create((set) => ({
   canvasOptions:{
     height:0,
     orientation: "",
-    size: "",
+    size: "original",
     backgroundColor: "#008080"
   },
   setSelectedLayer: (layer) => set(() => ({ selectedLayer: layer })),
