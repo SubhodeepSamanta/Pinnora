@@ -9,6 +9,11 @@ const CreatePage = () => {
   const { currentUser } = useAuthStore();
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
+  const [previewImg,setPreviewImg]= useState({
+    url:'',
+    width:0,
+    height:0
+  })
   const [isEditing, setIsEditing]= useState(false);
 
   useEffect(() => {
@@ -17,7 +22,19 @@ const CreatePage = () => {
     }
   }, [navigate, currentUser]);
 
-  const previewImg = file? URL.createObjectURL(file) : null;
+  useEffect(()=>{
+    if(file){
+    const img= new Image();
+    img.src= URL.createObjectURL(file);
+    img.onload= ()=>{
+    setPreviewImg({
+      url: img.src,
+      width: img.width,
+      height: img.height
+    })}
+    }
+  },[file])
+
 
   return (
     <div className={isEditing ? 'createpage' : 'createpage no-edit'}>
@@ -25,12 +42,12 @@ const CreatePage = () => {
         <h1>{isEditing ? 'Editing' : 'Create Pin'}</h1>
         <button className="publish">{isEditing ? 'Done' : 'Publish'}</button>
       </div>
-    {isEditing ? <Editor/> : (
+    {isEditing ? <Editor previewImg={previewImg}/> : (
       <>
       <div className="create-bottom">
-        {previewImg ? (
+        {previewImg.url ? (
           <div onClick={()=>setIsEditing(e=>!e)} className="previewImg">
-            <img src={previewImg} alt="" />
+            <img src={previewImg.url} alt="" />
             <Img className='edit-icon' src='/general/edit.svg' />
           </div>
         ) : (
