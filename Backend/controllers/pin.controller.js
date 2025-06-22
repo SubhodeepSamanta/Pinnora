@@ -80,7 +80,6 @@ export const createPin= async(req,res)=>{
     (parsedTextOptions.top * height) / parsedCanvasOptions.height
   );
     const transformationString= `w-${width},h-${height}${cropping},bg-${parsedCanvasOptions.backgroundColor.substring(1)}${parsedTextOptions.text ? `,l-text,i-${parsedTextOptions.text},fs-${parsedTextOptions.fontSize*2},lx-${textLeftPosition},ly-${textTopPosition},co-${parsedTextOptions.color.substring(1)},l-end` : ""}`;
-    console.log(transformationString);
     
     imagekit.upload({
         file: media.data,

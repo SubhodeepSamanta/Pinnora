@@ -30,7 +30,6 @@ const PostInteractions = ({username,img,displayName,postId}) => {
       if(isPending) return "Loading...";
       if(error) return "An error has occured: "+error.message;
       if(!data) return "Something went wrong"
-      console.log(data);
   return (
     <>
     <div className='postInteractions'>

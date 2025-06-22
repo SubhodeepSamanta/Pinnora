@@ -29,7 +29,7 @@ const UserButton = () => {
             <Img  onClick={()=>setOption(o=>!o)} src="/general/arrow.svg" alt="" className='arrow'/>
             {option && <div className="options">
                 <Link to={currentUser.username}><div className='option'>Profile</div></Link>
-                <Link to='/auth'><div className='option'>Setting</div></Link>
+                <Link to={`/${currentUser.username}`}><div className='option'>Setting</div></Link>
                 <div onClick={handleLogout}><div className='option'>Logout</div></div>
             </div>
             }
