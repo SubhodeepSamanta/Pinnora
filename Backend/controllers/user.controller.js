@@ -20,7 +20,7 @@ export const registerUser= async (req,res)=>{
     const token=jwt.sign({userId: newUser._id},process.env.JWT_SECRET);
     res.cookie("token",token,{
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
         maxAge: 1000 * 60 * 60 * 24 *7 
     })
 
@@ -39,7 +39,7 @@ export const loginUser= async (req,res)=>{
     const token=jwt.sign({userId: user._id},process.env.JWT_SECRET);
     res.cookie("token",token,{
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7 
     })
     res.status(200).send(detailsWithoutPassword);
