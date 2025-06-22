@@ -30,7 +30,7 @@ const PostPage = () => {
           <Img src={data.media} width='762'/>
         </div>
         <div className="post-info">
-          <PostInteractions username={data.user.username} img={data.user.img} displayName={data.user.displayName}/>
+          <PostInteractions username={data.user.username} img={data.user.img} displayName={data.user.displayName} postId={id}/>
           <Comments id={data._id}/>
         </div>
       </div>

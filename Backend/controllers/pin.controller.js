@@ -2,6 +2,9 @@ import ImageKit from "imagekit";
 import Pin from "../models/pin.model.js"
 import User from "../models/user.model.js";
 import sharp from 'sharp'
+import Like from "../models/like.model.js";
+import Save from "../models/save.model.js";
+import jwt from 'jsonwebtoken'
 
 export const getPins= async (req,res)=>{
     const pageNumber= Number(req.query.cursor) || 0;
@@ -54,9 +57,6 @@ export const createPin= async(req,res)=>{
     }
     width= metadata.width;
     height= metadata.width / clientAspectRatio;
-    console.log(metadata.width);
-    console.log(clientAspectRatio);
-    console.log(height);
     
     const imagekit = new ImageKit({
         publicKey : process.env.IK_PUBLIC_KEY,
@@ -106,4 +106,52 @@ export const createPin= async(req,res)=>{
         console.log(err);
         res.status(500).json(err);
     })
+}
+
+export const interactionCheck= async (req,res)=>{
+    const {id}= req.params;
+    const token= req.cookies.token;
+    const likeCount= await Like.countDocuments({pin:id});
+
+    if(!token){
+        return res.status(200).send({
+            likeCount,
+            isLiked: false,
+            isSaved: false
+        })
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, async (err,payload)=>{
+            if(err) return res.status(403).send({message: 'token invalid'});
+            const user= payload.userId;
+            const isLiked= await Like.findOne({pin:id,user});
+            const isSaved= await Save.findOne({pin:id,user});
+            return res.status(200).send({
+                likeCount,
+                isLiked: isLiked ? true : false,
+                isSaved: isSaved ? true : false
+            })
+        })
+}
+
+export const interact= async(req,res)=>{
+    const {id}= req.params;
+    const {type}= req.body;
+    if(type==="like"){
+        const isLiked= await Like.findOne({user:req.user, pin:id});
+        if(isLiked){
+            await Like.deleteOne({user:req.user,pin:id});
+        }else{
+            await Like.create({user:req.user,pin:id});
+        }
+    }
+    if(type==="save"){
+        const isSaved= await Save.findOne({user:req.user, pin:id});
+        if(isSaved){
+            await Save.deleteOne({user:req.user,pin:id});
+        }else{
+            await Save.create({user:req.user,pin:id});
+        }
+    }
+    return res.status(200).json({message: "Interaction"});
 }
