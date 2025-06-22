@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Img } from '../ImageKit/Image'
 import useEditorStore from '../../utils/useEditorStore'
 
 const Workspace = ({previewImg}) => {
-  const {textOptions, setTextOptions, canvasOptions, setCanvasOptions}= useEditorStore();
+  const {textOptions, setTextOptions, setSelectedLayer, canvasOptions, setCanvasOptions}= useEditorStore();
   const handleDelete= ()=>{
     setTextOptions({...textOptions, text: ""});
   }
@@ -11,7 +11,6 @@ const Workspace = ({previewImg}) => {
   useEffect(()=>{
     if(canvasOptions.height===0){
       const newHeight= (375 * previewImg.height) / previewImg.width;
-      console.log(`workspace: ${newHeight}`)
       setCanvasOptions({
         ...canvasOptions,
         height: newHeight,
@@ -20,14 +19,42 @@ const Workspace = ({previewImg}) => {
     }
   },[previewImg, canvasOptions, setCanvasOptions]);
 
+  const itemRef= useRef();
+  const dragging= useRef(false);
+  const containerRef= useRef();
+  const offset= useRef({x:0 , y:0});
+
+  const handleMouseUp= (e)=>{
+   dragging.current=false; 
+  }
+  const handleMouseDown= (e)=>{
+    setSelectedLayer("text");
+    dragging.current=true;
+    offset.current={
+      x: e.clientX - textOptions.left,
+      y: e.clientY - textOptions.top
+    }
+  }
+  const handleMouseLeave= (e)=>{
+   dragging.current=false; 
+  }
+  const handleMouseMove= (e)=>{
+   if(!dragging.current) return;
+   setTextOptions({
+    ...textOptions,
+    top: e.clientY - offset.current.y,
+    left: e.clientX - offset.current.x
+   })
+  }
+
   return (
     <div className='workspace'>
-      <div className="canvas" style={{height: canvasOptions.height, backgroundColor: canvasOptions.backgroundColor}}>
+      <div ref={containerRef} className="canvas" style={{height: canvasOptions.height, backgroundColor: canvasOptions.backgroundColor}} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} onMouseUp={handleMouseUp}>
         <img src={previewImg.url} />
         {
           textOptions.text ? 
           <div className="add-text" style={{top: `${textOptions.top}px`, left: `${textOptions.left}px`, fontSize: `${textOptions.fontSize}px` }}>
-            <input style={{color: `${textOptions.color}`}} type="text" value={textOptions.text} onChange={(e)=> setTextOptions({...textOptions,text: e.target.value}) }/>
+            <input ref={itemRef} onMouseDown={handleMouseDown} style={{color: `${textOptions.color}`}} type="text" value={textOptions.text} onChange={(e)=> setTextOptions({...textOptions,text: e.target.value}) }/>
             <span onClick={handleDelete}><Img className='text-delete' src='general/delete.svg' /></span>
           </div>
           :
