@@ -21,6 +21,7 @@ export const registerUser= async (req,res)=>{
     res.cookie("token",token,{
         httpOnly: true,
         secure: true,
+        sameSite: "None",
         maxAge: 1000 * 60 * 60 * 24 *7 
     })
 
@@ -40,6 +41,7 @@ export const loginUser= async (req,res)=>{
     res.cookie("token",token,{
         httpOnly: true,
         secure: true,
+        sameSite: "None",
         maxAge: 1000 * 60 * 60 * 24 * 7 
     })
     res.status(200).send(detailsWithoutPassword);
