@@ -7,7 +7,6 @@ export const verifyToken= async (req,res,next)=>{
     jwt.verify(token, process.env.JWT_SECRET, (err,payload)=>{
         if(err) return res.status(403).send({message: 'token invalid'});
         req.user=payload.userId;
-        console.log('token from cookie:', req.cookies.token);
         next()
     })
 }
