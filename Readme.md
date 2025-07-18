@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/logo.png" alt="Pinnora Logo" width="140"/>
+<img src="Frontend/public/logo.png" alt="Pinnora Logo" width="60"/>
 
 # 📌 Pinnora – Discover, Create, and Share Visual Stories
 
