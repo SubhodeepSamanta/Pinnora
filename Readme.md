@@ -137,10 +137,9 @@ npm run dev
 
 <div align="center">
 
-| Home | Pin Details | Dashboard | Board |
-|------|-------------|-----------|-------|
-| ![Home](screenshots/home.png) | ![Pin](screenshots/pin.png) | ![Dashboard](screenshots/dashboard.png) | ![Board](screenshots/board.png) |
-
+| Home | Pin Details | Dashboard | Board | Login | Register | Create Page | Edit Page | Comment |
+|------|-------------|-----------|-------|-------|----------|-------------|-----------|---------|
+| ![Home](Screenshots/Home.png) | ![Pin Details](Screenshots/PostPage.png) | ![Profile](Screenshots/ProfilePage.png) | ![Board](Screenshots/SavedPage.png) | ![Login](Screenshots/Login.png) | ![Register](Screenshots/Register.png) | ![Create Page](Screenshots/CreatePage.png) | ![Edit Page](Screenshots/EditPage.png) | ![Comment](Screenshots/Comment.png) |
 </div>
 
 ---
