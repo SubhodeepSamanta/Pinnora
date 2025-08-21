@@ -8,7 +8,7 @@ const FollowSchema= new mongoose.Schema({
     },
     following:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Pin",
+        ref: "User",
         required: true
     }
 },{timestamps:true});
